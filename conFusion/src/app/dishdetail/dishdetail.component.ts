@@ -8,7 +8,8 @@ import { Dish } from '../shared/dish';
 })
 export class DishdetailComponent implements OnInit {
      @Input()
-     dish: DISH;
+     dish: Dish;
+
      constructor() { }
 
      ngOnInit() {
