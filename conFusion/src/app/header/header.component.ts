@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef} from '@angular/material';
+import { MatDialog, MatDialogRef} from '@angular/material/dialog';
 import { LoginComponent } from '../login/login.component';
 @Component({
   selector: 'app-header',
@@ -14,6 +14,6 @@ export class HeaderComponent implements OnInit {
   }
 
   openLoginForm(): void {
-       this.dialog.open(LoginComponent, {width: '400px', height: '250px'});
+       this.dialog.open(LoginComponent, {width: '600px', height: '450px'});
  }
 }

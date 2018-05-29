@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 import { MaterialModule } from './material/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppRoutingModule } from './app-routing/app-routing.module';
+import { MatDialogModule } from '@angular/material/dialog';
+import { FormsModule } from '@angular/forms';
 import 'hammerjs';
 
 import { AppComponent } from './app.component';
@@ -39,7 +41,8 @@ import { LoginComponent } from './login/login.component';
     BrowserAnimationsModule,
     MaterialModule,
     FlexLayoutModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   // make services available for the rest of the application
   providers: [DishService,

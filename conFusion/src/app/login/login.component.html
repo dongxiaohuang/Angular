@@ -1,5 +1,40 @@
 <mat-toolbar mat-dialog-title color="primary">
-     Login
-     <span class="flex-spacer"></span>
-     <button mat-button mat-dialog-close>&times;</button>
+  <mat-dialog-actions>
+    Login
+    <span class="flex-spacer"></span>
+    <button mat-button mat-dialog-close>&times;</button>
+  </mat-dialog-actions>
 </mat-toolbar>
+
+<p>
+  {{ user | json }}
+</p>
+<form novalidate ng-submit="onSubmit()">
+     <mat-dialog-content>
+          <p>
+               <mat-form-field>
+                    <!-- [(ngModel)]="user.username" -->
+                    <input matInput placeholder="Username" type="text" [(ngModel)]="user.username" name="username" required/>
+               </mat-form-field>
+               <mat-form-field>
+                    <!-- two way data binding -->
+                    <!-- [(ngModel]="user.password" -->
+                    <!-- The name attribute is used to reference elements in a JavaScript -->
+                    <input matInput placeholder="Password" type="password" [(ngModel)]="user.password" name="password" required/>
+               </mat-form-field>
+               <!-- [(ngModel)]="user.remember" -->
+               <mat-checkbox name="remember" [(ngModel)]="user.remember">
+                    Remember Me
+               </mat-checkbox>
+          </p>
+     </mat-dialog-content>
+    <mat-dialog-actions>
+         <span class="flex-spacer"></span>
+         <button mat-button mat-dialog-close>Cancel</button>
+         <button type="submit"
+          mat-button mat-dialog-close
+           class="background-primary text-floral-white">Login
+         </button>
+
+    </mat-dialog-actions>
+</form>
