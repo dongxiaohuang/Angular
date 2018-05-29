@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-//conponent operator takes an javascript object as a parameter
+// conponent operator takes an javascript object as a parameter
 @Component({
 // used in index.html
   selector: 'app-root',
