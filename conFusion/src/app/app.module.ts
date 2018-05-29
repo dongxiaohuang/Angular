@@ -14,9 +14,12 @@ import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { ContactComponent } from './contact/contact.component';
+import { LeaderComponent } from './leader/leader.component';
 
 import { DishService } from './services/dish.service';
 import { PromotionService } from './services/promotion.service';
+import { LeaderService } from './services/leader.service';
+import { LoginComponent } from './login/login.component';
  // decorator function
 @NgModule({
   declarations: [
@@ -27,7 +30,9 @@ import { PromotionService } from './services/promotion.service';
     FooterComponent,
     HomeComponent,
     AboutusComponent,
-    ContactComponent
+    ContactComponent,
+    LeaderComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -39,6 +44,9 @@ import { PromotionService } from './services/promotion.service';
   // make services available for the rest of the application
   providers: [DishService,
                PromotionService],
+  entryComponents: [
+       LoginComponent // this component will be open through code instead of router
+ ]
   bootstrap: [AppComponent]
 })
 export class AppModule { }
