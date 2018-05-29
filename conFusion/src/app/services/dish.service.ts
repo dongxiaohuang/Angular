@@ -9,8 +9,16 @@ import { DISHES } from '../shared/dishes';
 export class DishService {
 
   constructor() { }
-  //function name : return type
+  // function name : return type
   getDishes(): Dish[] {
-     return DISHES;
+    return DISHES;
+  }
+  getDish(id: number): Dish {
+       return DISHES.filter((dish) => (dish.id === id))[0]; // return array
+       // return DISHES.filter((dish) => {return dish.id === id;})[0]; // return array
  }
+
+ getFeaturedDish(): Dish {
+      return DISHES.filter((dish) => (dish.featured))[0];
+}
 }
