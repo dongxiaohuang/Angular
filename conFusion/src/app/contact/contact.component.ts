@@ -9,7 +9,7 @@ import { Feedback, ContactType } from '../shared/feedback';
 })
 export class ContactComponent implements OnInit {
 
-  feedbackForm: FromGroup;
+  feedbackForm: FormGroup;
   feedback: Feedback;
   contactType = ContactType;
 
