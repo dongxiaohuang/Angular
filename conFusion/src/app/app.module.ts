@@ -49,7 +49,7 @@ import { LoginComponent } from './login/login.component';
                PromotionService],
   entryComponents: [
        LoginComponent // this component will be open through code instead of router
- ]
+ ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
