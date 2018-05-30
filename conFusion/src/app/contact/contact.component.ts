@@ -22,10 +22,10 @@ export class ContactComponent implements OnInit {
 
   createFrom() {
        this.feedbackForm = this.fb.group({
-            firstname: '',
-            lastname: '',
-            telnum: 0,
-            email: '',
+            firstname: ['', Validators.required],
+            lastname: ['', Validators.required],
+            telnum: [, Validators.required],
+            email: ['', Validators.email],
             agree: false,
             contacttype: 'None',
             message: ''
@@ -35,6 +35,16 @@ export class ContactComponent implements OnInit {
  onSubmit() {
       this.feedback = this.feedbackForm.value;
       console.log(this.feedback);
-      this.feedbackForm.reset();
+      this.feedbackForm.reset(
+// it can also explicitly set
+           {
+           firstname: '',
+           lastname: '',
+           telnum: 0,
+           email: '',
+           agree: false,
+           contacttype: 'None',
+           message: ''
+      });
 }
 }

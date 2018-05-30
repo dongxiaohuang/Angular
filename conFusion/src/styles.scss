@@ -43,6 +43,14 @@ body {
     color: $secondary-text-color;
 }
 
+.ng-valid[required], .ng-valid.required  {
+  border-left: 5px solid #42A948; /* green */
+}
+
+.ng-invalid[required], .ng-valid.required {
+  border-left: 5px solid #a94442; /* red */
+}
+
 .flex-spacer {
   flex: 1 1 auto;
 }
