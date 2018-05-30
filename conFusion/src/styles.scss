@@ -39,6 +39,9 @@ body {
 .text-floral-white {
     color: floralwhite!important;
 }
+.text-floral-black {
+    color: $secondary-text-color;
+}
 
 .flex-spacer {
   flex: 1 1 auto;
