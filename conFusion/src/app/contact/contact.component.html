@@ -47,32 +47,42 @@
                      <mat-form-field class="half-width">
                           <input matInput formControlName="firstname" placeholder="First Name" type="text" required/>
                           <mat-hint>
-                               <span [hidden]="!(feedbackForm.get('firstname').errors?.required && feedbackForm.get('firstname').touched)">
-                                    first name is required!
+                               <span [hidden]="!(formErrors.firstname)">
+                                    {{formErrors.firstname}}
                                </span>
                           </mat-hint>
                      </mat-form-field>
                      <mat-form-field class="half-width">
                           <input matInput formControlName="lastname" placeholder="Last Name" type="text" required/>
                           <mat-hint>
-                               <span [hidden]="!(feedbackForm.get('lastname').errors?.required && feedbackForm.get('lastname').touched)">
-                                    last name is required!
+                               <span [hidden]="!(formErrors.lastname)">
+                                    {{formErrors.lastname}}
                                </span>
                           </mat-hint>
                      </mat-form-field>
                      <mat-form-field class="half-width">
-                          <input matInput formControlName="telnum" placeholder="Tel. Number" type="tel" required/>
+                          <input matInput formControlName="telnum" placeholder="Tel. Number" type="tel" pattern="[0-9]*" required/>
+                          <mat-hint>
+                               <span [hidden]="!(formErrors.telnum)">
+                                    {{formErrors.telnum}}
+                               </span>
+                          </mat-hint>
                      </mat-form-field>
                      <mat-form-field class="half-width">
-                          <input matInput formControlName="email" placeholder="Email" type="email" required/>
+                          <input matInput formControlName="email" placeholder="Email" type="email" email required/>
+                          <mat-hint>
+                               <span [hidden]="!(formErrors.email)">
+                                    {{formErrors.email}}
+                               </span>
+                          </mat-hint>
                      </mat-form-field>
                      <table class="form-size">
                           <!-- <td> -->
                                <!-- <mat-slide-toggle formControlName="agree">May we contact you</mat-slide-toggle> -->
                           <!-- </td> -->
                           <td>
-            <mat-slide-toggle formControlName="agree">May we contact you?</mat-slide-toggle>
-            </td>
+                               <mat-slide-toggle formControlName="agree">May we contact you?</mat-slide-toggle>
+                          </td>
                           <td>
                                <mat-select placeholder="How?" formControlName="contacttype">
                                     <mat-option *ngFor="let ctype of contactType" class="text-floral-black" [value]='ctype'>
