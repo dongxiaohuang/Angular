@@ -29,14 +29,17 @@ export class DishService {
     return this.http.get(baseURL + 'dishes')
      .map(res => {
           return this.processHTTPMsgService.extractData(res);
-     });
+     })
+     .catch(error => { return this.processHTTPMsgService.handleError(error);}
+     );
   }
 
   getDish(id: number): Observable<Dish> {
       return this.http.get(baseURL +'dishes/' +id )
           .map(res => {
                return this.processHTTPMsgService.extractData(res);
-          });
+          })
+          .catch(error => {return this.processHTTPMsgService.handleError(error);});
     // return Observable.of(DISHES.filter((dish) => (dish.id === id))[0]).delay(2000);
   }
 
@@ -44,13 +47,16 @@ export class DishService {
     return this.http.get(baseURL +'dishes?featured=true')
      .map(res => {
           return this.processHTTPMsgService.extractData(res)[0];
-     });
+     })
+     .catch(error => {return this.processHTTPMsgService.handleError(error);});
+
   }
   getDishIds(): Observable<number[]> {
        // transfer by map
        return this.getDishes()
           .map(dishes => {
-               return dishes.map(dish => dish.id);
-          });
+               return dishes.map(dish => dish.id);})
+               .catch(error => {return this.processHTTPMsgService.handleError(error)});
+
  }
 }

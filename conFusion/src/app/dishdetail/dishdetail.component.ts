@@ -22,6 +22,7 @@ export class DishdetailComponent implements OnInit {
   next: number;
   commentForm: FormGroup;
   comment: Comment;
+  errMsg: string;
 
   formErrors = {
     'rating': '',
@@ -48,7 +49,10 @@ export class DishdetailComponent implements OnInit {
   ngOnInit() {
 
     this.disheservice.getDishIds()
-      .subscribe((dishIds) => this.dishIds = dishIds);
+      .subscribe(
+           (dishIds) => this.dishIds = dishIds,
+           (err) => this.errMsg = <any> err
+);
     // ActivatedRoute provides a set of observables
     // params obtains params from url
     // take one snapshot from route service and obtain value of params at that

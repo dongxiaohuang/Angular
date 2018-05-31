@@ -30,9 +30,13 @@
          </mat-card-actions>
     </mat-card>
   </div>
-  <div [hidden]="dish">
+  <div [hidden]="dish || errMsg">
        <mat-spinner></mat-spinner>
        <h4>Loading... please wait</h4>
+  </div>
+  <div *ngIf="errMsg">
+       <h2>Error</h2>
+       <H4>{{errMsg}}</H4>
   </div>
  <div class="column">
       <div fxFlex="40" *ngIf="dish">
@@ -58,9 +62,13 @@
                      </mat-list>
                 </mat-card-content>
            </mat-card>
-           <div [hidden]="dish">
+           <div [hidden]="dish || errMsg">
                 <mat-spinner></mat-spinner>
                 <h4>Loading... please wait</h4>
+           </div>
+           <div *ngIf="errMsg">
+                <h2>Error</h2>
+                <H4>{{errMsg}}</H4>
            </div>
       </div>
       <div fxFlex class="form-size" >

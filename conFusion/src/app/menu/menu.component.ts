@@ -11,6 +11,7 @@ import { DishService } from '../services/dish.service';
 export class MenuComponent implements OnInit {
      // name : type =initilization
      dishes: Dish[];
+     errMsg: string;
 
      constructor(private dishService: DishService,
           @Inject('BaseURL') private BaseURL // inject for value
@@ -22,9 +23,9 @@ export class MenuComponent implements OnInit {
      ngOnInit() {
           // called after the constructor and called  after the first ngOnChanges()
           this.dishService.getDishes()
-               .subscribe((dishes) => {
-                    this.dishes = dishes;
-               });
+               .subscribe(
+                    (dishes) => {this.dishes = dishes;},
+                    (err) => this.errMsg = <any> err);
           // ngOnInit() is better place to "start" - it's where/when components' bindings are resolved.
      }
 
