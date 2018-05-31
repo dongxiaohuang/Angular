@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Params, ActivatedRoute } from '@angular/router'; // receive Params of router from menu template
 import { Location } from '@angular/common'; // enable to track history of browser
@@ -7,7 +7,7 @@ import { Location } from '@angular/common'; // enable to track history of browse
 import { Dish } from '../shared/dish';
 import { Comment } from '../shared/comment';
 import { DishService } from '../services/dish.service';
-
+import { baseURL } from '../shared/baseurl';
 import 'rxjs/add/operator/switchmap';
 @Component({
   selector: 'app-dishdetail',
@@ -40,7 +40,8 @@ export class DishdetailComponent implements OnInit {
   constructor(private disheservice: DishService,
     private route: ActivatedRoute,
     private location: Location,
-    private fb: FormBuilder) {
+    private fb: FormBuilder,
+     @Inject('BaseURL') private BaseURL) {
     this.createForm()
   }
 

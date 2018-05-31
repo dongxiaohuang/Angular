@@ -1,11 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Dish } from '../shared/dish';
-import { DISHES } from '../shared/dishes';
 import { Observable } from 'rxjs/Observable';
+import { Http, Response } from '@angular/http';
 
+import { baseURL } from '../shared/baseurl';
+import { ProcessHTTPMsgService } from './process-httpmsg.service';
 
 import 'rxjs/add/operator/delay';
 import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/map'
 // Import a module for side-effects only
 // Though not recommended practice, some modules set up some global
 // state that can be used by other modules. These modules may not have any
@@ -16,22 +20,37 @@ import 'rxjs/add/observable/of';
 })
 export class DishService {
 
-  constructor() { }
+  constructor(private http: Http,
+     private processHTTPMsgService: ProcessHTTPMsgService
+ ) { }
   // function name : return type
   getDishes(): Observable<Dish[]> {
     // emit only one value using `of`
-    return Observable.of(DISHES).delay(2000);
+    return this.http.get(baseURL + 'dishes')
+     .map(res => {
+          return this.processHTTPMsgService.extractData(res);
+     });
   }
 
   getDish(id: number): Observable<Dish> {
-    return Observable.of(DISHES.filter((dish) => (dish.id === id))[0]).delay(2000);
+      return this.http.get(baseURL +'dishes/' +id )
+          .map(res => {
+               return this.processHTTPMsgService.extractData(res);
+          });
+    // return Observable.of(DISHES.filter((dish) => (dish.id === id))[0]).delay(2000);
   }
 
   getFeaturedDish(): Observable<Dish> {
-    return Observable.of(DISHES.filter(dish => dish.featured)[0]).delay(2000);
+    return this.http.get(baseURL +'dishes?featured=true')
+     .map(res => {
+          return this.processHTTPMsgService.extractData(res)[0];
+     });
   }
   getDishIds(): Observable<number[]> {
        // transfer by map
-       return Observable.of(DISHES.map(dish => dish.id)).delay(2000);
+       return this.getDishes()
+          .map(dishes => {
+               return dishes.map(dish => dish.id);
+          });
  }
 }

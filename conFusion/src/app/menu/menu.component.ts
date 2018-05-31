@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 
 import { Dish } from '../shared/dish';
 
@@ -12,8 +12,9 @@ export class MenuComponent implements OnInit {
      // name : type =initilization
      dishes: Dish[];
 
-     selectedDish: Dish;
-     constructor(private dishService: DishService) {
+     constructor(private dishService: DishService,
+          @Inject('BaseURL') private BaseURL // inject for value
+     ) {
           // called first time before the ngOnInit()
           // you should use constructor() to setup Dependency Injection and not much else.
 
@@ -27,8 +28,5 @@ export class MenuComponent implements OnInit {
           // ngOnInit() is better place to "start" - it's where/when components' bindings are resolved.
      }
 
-     onSelect(dish: Dish) {
-          this.selectedDish = dish;
-     }
 
 }

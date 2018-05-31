@@ -8,6 +8,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { HttpModule } from '@angular/http';
 import 'hammerjs';
 
 import { AppComponent } from './app.component';
@@ -24,6 +25,9 @@ import { DishService } from './services/dish.service';
 import { PromotionService } from './services/promotion.service';
 import { LeaderService } from './services/leader.service';
 import { LoginComponent } from './login/login.component';
+
+import { baseURL } from './shared/baseurl';
+import { ProcessHTTPMsgService } from './services/process-httpmsg.service';
  // decorator function
 @NgModule({
   declarations: [
@@ -45,11 +49,15 @@ import { LoginComponent } from './login/login.component';
     FlexLayoutModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    HttpModule
   ],
   // make services available for the rest of the application
   providers: [DishService,
-               PromotionService],
+               PromotionService,
+               LeaderService,
+               ProcessHTTPMsgService,
+               { provide: 'BaseURL', useValue: baseURL }],
   entryComponents: [
        LoginComponent // this component will be open through code instead of router
  ],
