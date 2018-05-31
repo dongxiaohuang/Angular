@@ -9,6 +9,7 @@ import {
   MatListModule,
   MatGridListModule,
   MatDialogModule,
+  MatProgressSpinnerModule,
   // come together for form
   MatFormFieldModule,
   MatInputModule,
@@ -47,7 +48,8 @@ import {
     MatInputModule,
     MatCheckboxModule,
     MatSelectModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatProgressSpinnerModule
   ]
 })
 export class MaterialModule { }

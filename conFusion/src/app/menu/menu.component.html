@@ -9,7 +9,8 @@
           </div>
      </div>
 
-     <div fxFlex>
+     <!-- show only if the dishes is loaded -->
+     <div fxFlex *ngIf="dishes">
           <mat-grid-list  cols="2" rowHeight="200px">
                <!-- like media in bootstrap -->
                <mat-grid-tile *ngFor="let dish of dishes" [routerLink]="['/dishdetail', dish.id]">
@@ -20,6 +21,10 @@
                     </mat-grid-tile-footer>
                </mat-grid-tile>
           </mat-grid-list>
+     </div>
+     <div [hidden]="dishes" >
+          <mat-spinner ></mat-spinner>
+          <h4>Loading... Please Wait</h4>
      </div>
      <!-- it seems like from template to other component -->
      <!-- <app-dishdetail [dish]="selectedDish"></app-dishdetail> -->
