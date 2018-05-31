@@ -23,15 +23,15 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
        this.dishservice.getFeaturedDish()
-          .then((dish) => {
+          .subscribe((dish) => {
                this.dish = dish;
           });
        this.promoservice.getFeaturedPromotion()
-          .then((promo) => {
+          .subscribe((promo) => {
                this.promotion = promo;
           });
        this.leaderservice.getFeaturedLeader()
-          .then((leader) => {
+          .subscribe((leader) => {
                this.leader = leader;
           });
   }

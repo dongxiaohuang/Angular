@@ -21,7 +21,7 @@ export class MenuComponent implements OnInit {
      ngOnInit() {
           // called after the constructor and called  after the first ngOnChanges()
           this.dishService.getDishes()
-               .then((dishes) => {
+               .subscribe((dishes) => {
                     this.dishes = dishes;
                });
           // ngOnInit() is better place to "start" - it's where/when components' bindings are resolved.
