@@ -34,34 +34,81 @@
        <mat-spinner></mat-spinner>
        <h4>Loading... please wait</h4>
   </div>
+ <div class="column">
+      <div fxFlex="40" *ngIf="dish">
+           <mat-card>
+                <mat-card-header>
+                     <mat-card-title>
+                          <h3>Comments</h3>
+                     </mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                     <mat-list>
+                          <mat-list-item *ngFor="let comment of dish.comments">
+                               <p mat-line>
+                                    {{comment.comment}}
+                               </p>
+                               <p mat-line>
+                                    {{comment.rating}} Stars
+                               </p>
+                               <p mat-line>
+                                    -- {{comment.author}} {{comment.date | date:'yyyy-MM-dd HH:mm a z':'+0800'}}
+                               </p>
+                          </mat-list-item>
+                     </mat-list>
+                </mat-card-content>
+           </mat-card>
+           <div [hidden]="dish">
+                <mat-spinner></mat-spinner>
+                <h4>Loading... please wait</h4>
+           </div>
+      </div>
+      <div fxFlex class="form-size" >
+           <h3> submit your comment</h3>
+           <div [hidden]="!commentForm.value.author">
+                <p>
+                     {{ commentForm.value.comment }}
+                </p>
+                <p [hidden]="!commentForm.value.rating">
+                     {{ commentForm.value.rating }} stars
+                </p>
+                <p [hidden]="!commentForm.value.author">
+                     -- {{ commentForm.value.author}}
+                </p>
+           </div>
+           <form novalidate [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+                <mat-form-field>
+                     <input matInput formControlName="author" placeholder="author" type="text" />
+                     <mat-hint>
+                          <span [hidden]="!(formErrors.author)">
+                               {{formErrors.author}}
+                          </span>
+                     </mat-hint>
+                </mat-form-field>
+                <!-- <mat-form-field> -->
+                <p>
+                     <label for="rating">Rating: </label>
+                     <mat-slider min="0" max="5" step="1" value="5" id="rating" tickInterval="auto" thumbLabel formControlName="rating"></mat-slider>
+                </p>
+                <!-- </mat-form-field> -->
+                <p>
+                     <mat-form-field class="full-width">
+                          <textarea matInput formControlName="comment" placeholder="Your comment" rows=12></textarea>
+                          <mat-hint>
+                               <span [hidden]="!(formErrors.comment)">
+                                    {{formErrors.comment}}
+                               </span>
+                          </mat-hint>
+                     </mat-form-field>
+                </p>
 
-  <div fxFlex="40" *ngIf="dish">
-    <mat-card>
-         <mat-card-header>
-              <mat-card-title>
-                   <h3>Comments</h3>
-              </mat-card-title>
-         </mat-card-header>
-    <mat-card-content>
-         <mat-list>
-              <mat-list-item *ngFor="let comment of dish.comments">
-                   <p mat-line>
-                        {{comment.comment}}
-                   </p>
-                   <p mat-line>
-                        {{comment.rating}} Stars
-                   </p>
-                   <p mat-line>
-                        -- {{comment.author}} {{comment.date | date:'yyyy-MM-dd HH:mm a z':'+0800'}}
-                   </p>
-              </mat-list-item>
-         </mat-list>
-    </mat-card-content>
-</mat-card>
-<div [hidden]="dish">
-     <mat-spinner></mat-spinner>
-     <h4>Loading... please wait</h4>
-</div>
-  </div>
+                <button mat-button type="submit"
+                [style.background-color]="commentForm.invalid ? 'grey' : 'green'"
+                [disabled]="commentForm.invalid">
+                Submit
+               </button>
+           </form>
+      </div>
+ </div>
 
 </div>
