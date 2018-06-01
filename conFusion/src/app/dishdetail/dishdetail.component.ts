@@ -21,6 +21,7 @@ export class DishdetailComponent implements OnInit {
   // @Input()
   dish: Dish;
   dishIds: number[];
+  dishcopy = null; // restangular object
   prev: number;
   next: number;
   commentForm: FormGroup;
@@ -67,6 +68,7 @@ export class DishdetailComponent implements OnInit {
       .switchMap((params: Params) => this.disheservice.getDish(+params['id']))
       .subscribe((dish) => {
         this.dish = dish;
+        this.dishcopy = dish;
         this.setPrevNext(dish.id);
       });
     // params observable changes it will obtain update dish
@@ -109,13 +111,18 @@ export class DishdetailComponent implements OnInit {
   }
 
   onSubmit() {
-       let date: string = new Date().toISOString();
-       this.comment = {
-            'rating': this.commentForm.value.rating,
-            'comment': this.commentForm.value.comment,
-            'author': this.commentForm.value.author,
-            'date': date }
-       this.dish.comments.push(this.comment);
+       // let date: string = new Date().toISOString();
+       // this.comment = {
+       //      'rating': this.commentForm.value.rating,
+       //      'comment': this.commentForm.value.comment,
+       //      'author': this.commentForm.value.author,
+       //      'date': date }
+       this.comment = this.commentForm.value;
+       this.comment.date = new Date().toISOString();
+
+       this.dishcopy.comments.push(this.comment);
+       this.dishcopy.save()
+          .subscribe(dish => this.dish = dish); // confirm and subscribe
        this.commentForm.reset();
  }
 
