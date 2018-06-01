@@ -2,6 +2,8 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Params, ActivatedRoute } from '@angular/router'; // receive Params of router from menu template
 import { Location } from '@angular/common'; // enable to track history of browser
+import { RestangularModule, Restangular } from 'ngx-restangular';
+
 // import { Input } from '@angular/core';
 
 import { Dish } from '../shared/dish';
@@ -9,6 +11,7 @@ import { Comment } from '../shared/comment';
 import { DishService } from '../services/dish.service';
 import { baseURL } from '../shared/baseurl';
 import 'rxjs/add/operator/switchmap';
+
 @Component({
   selector: 'app-dishdetail',
   templateUrl: './dishdetail.component.html',
