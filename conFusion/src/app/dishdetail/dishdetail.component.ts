@@ -11,11 +11,25 @@ import { Comment } from '../shared/comment';
 import { DishService } from '../services/dish.service';
 import { baseURL } from '../shared/baseurl';
 import 'rxjs/add/operator/switchmap';
+import { trigger, state, animate, transition, style } from '@angular/animations';
 
 @Component({
   selector: 'app-dishdetail',
   templateUrl: './dishdetail.component.html',
-  styleUrls: ['./dishdetail.component.scss']
+  styleUrls: ['./dishdetail.component.scss'],
+  animations: [
+       trigger('visibility', [
+            state('shown', style({
+                 transform: 'scale(1.0)',
+                 opacity: 1
+            })),
+            state('hidden', style({
+                 transform: 'scale(0.5)',
+                 opacity: 0
+            })),
+            transition('* => *', animate('0.5s ease-in-out'))
+       ])
+ ]
 })
 export class DishdetailComponent implements OnInit {
   // @Input()
@@ -27,6 +41,7 @@ export class DishdetailComponent implements OnInit {
   commentForm: FormGroup;
   comment: Comment;
   errMsg: string;
+  visibility = 'shown';
 
   formErrors = {
     'rating': '',
@@ -65,12 +80,14 @@ export class DishdetailComponent implements OnInit {
 
     // + convert a string into interger value
     this.route.params
-      .switchMap((params: Params) => this.disheservice.getDish(+params['id']))
+      .switchMap((params: Params) => { this.visibility = 'hidden'; return this.disheservice.getDish(+params['id']);})
       .subscribe((dish) => {
         this.dish = dish;
         this.dishcopy = dish;
         this.setPrevNext(dish.id);
-      });
+        this.visibility = 'shown';
+   },
+   errmess => { this.dish = null; this.errMsg = <any>errmess; });
     // params observable changes it will obtain update dish
   }
 
