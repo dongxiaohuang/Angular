@@ -94,7 +94,7 @@ export class DishdetailComponent implements OnInit {
   createForm() {
     //create new reactive form
     this.commentForm = this.fb.group({
-      rating: ['', [Validators.required]],
+      rating: [5, [Validators.required]],
       comment: ['', Validators.required],
       author: ['', [Validators.required, Validators.minLength(2)]]
     });
