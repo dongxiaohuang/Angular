@@ -34,6 +34,7 @@ import { HighlightDirective } from './directives/highlight.directive';
  // decorator function
 @NgModule({
   declarations: [
+       // derectives belongs to this module: components directives
     AppComponent,
     MenuComponent,
     DishdetailComponent,
@@ -46,6 +47,7 @@ import { HighlightDirective } from './directives/highlight.directive';
     LoginComponent,
     HighlightDirective
   ],
+  // Other modules whose exported classes are needed by component templates declared in this NgModule.
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -58,6 +60,9 @@ import { HighlightDirective } from './directives/highlight.directive';
     RestangularModule.forRoot(RestangularConfigFactory)
   ],
   // make services available for the rest of the application
+  // Creators of services that this NgModule contributes to the global collection of services;
+  // they become accessible in all parts of the app.
+   // (You can also specify providers at the component level, which is often preferred.)
   providers: [DishService,
                PromotionService,
                LeaderService,
@@ -67,5 +72,7 @@ import { HighlightDirective } from './directives/highlight.directive';
        LoginComponent // this component will be open through code instead of router
  ],
   bootstrap: [AppComponent]
+  //The main application view, called the root component, which hosts all other app views.
+  // Only the root NgModule should set this bootstrap property.
 })
 export class AppModule { }

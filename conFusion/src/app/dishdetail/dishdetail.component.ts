@@ -57,6 +57,9 @@ export class DishdetailComponent implements OnInit {
     }
   }
 
+  //When Angular creates a new instance of a component class,
+   // it determines which services or other dependencies 
+   // that component needs by looking at the types of its constructor parameters.
   constructor(private disheservice: DishService,
     private route: ActivatedRoute,
     private location: Location,

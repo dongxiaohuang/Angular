@@ -21,21 +21,8 @@ import {
 } from '@angular/material';
 
 @NgModule({
-  imports: [
-    MatButtonModule,
-    MatMenuModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatCardModule,
-    MatListModule,
-    MatGridListModule,
-    MatDialogModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatCheckboxModule,
-    MatSelectModule,
-    MatSlideToggleModule
-  ],
+     // Other modules whose exported classes are needed by component templates declared in this NgModule.
+  // The subset of declarations that should be visible and usable in the component templates of other NgModules.
   exports: [
     MatButtonModule,
     MatMenuModule,
