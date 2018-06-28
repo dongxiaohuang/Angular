@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Leader } from '../shared/leader';
 import { LeaderService } from '../services/leader.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-aboutus',
@@ -10,7 +11,8 @@ import { LeaderService } from '../services/leader.service';
 export class AboutusComponent implements OnInit {
 
   leaders: Leader[]; // without let
-  constructor(private leadrservice: LeaderService) { }
+  constructor(private leadrservice: LeaderService,
+private router: Router) { }
 
   ngOnInit() {
     this.leadrservice.getLeaders()
